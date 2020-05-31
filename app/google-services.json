@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1086854273513",
+    "firebase_url": "https://betes-jardim.firebaseio.com",
+    "project_id": "betes-jardim",
+    "storage_bucket": "betes-jardim.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1086854273513:android:b4537fb449f3b3aff91378",
+        "android_client_info": {
+          "package_name": "com.jardim.betes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1086854273513-f7i57b9vttg9filvg8guqbga5nddifsl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBScXfBbDcAB4LP2zlmoEn3E_R_aMWh_Eo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1086854273513-f7i57b9vttg9filvg8guqbga5nddifsl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
