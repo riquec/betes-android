@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">Betes</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_login">Olá, Betes!</string>
+    <string name="subtitle_login">Sua saúde na palma da mão</string>
+    <string name="get_started">Começar agora</string>
+    <string name="login">Login</string>
+    <string name="create_user">Crie sua conta</string>
+    <string name="first_name">Primeiro nome</string>
+    <string name="email">Email</string>
+    <string name="senha">Senha</string>
+    <string name="continue_with_google">Continuar com Google</string>
+    <string name="create_account">Criar conta</string>
+    <string name="input_data">Insira seus dados</string>
+    <string name="enter">Entrar</string>
 </resources>
