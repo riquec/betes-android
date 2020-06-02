@@ -20,6 +20,14 @@
         app:layout_constraintTop_toBottomOf="@id/createuser_image_back"
         style="@style/text_top_primary" />
 
+    <ProgressBar
+        android:id="@+id/createuser_progress"
+        app:layout_constraintLeft_toRightOf="@id/createuser_text_title"
+        app:layout_constraintTop_toTopOf="@id/createuser_text_title"
+        app:layout_constraintBottom_toBottomOf="@id/createuser_text_title"
+        style="@style/progress_side_top_title"
+        />
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/createuser_input_layout_nick_name"
         android:hint="@string/your_nick_name"

@@ -1,6 +1,7 @@
 package com.jardim.betes.base
 
 import android.app.Application
+import com.jardim.betes.di.databaseModule
 import com.jardim.betes.di.firebaseModule
 import com.jardim.betes.di.repositoryModules
 import com.jardim.betes.di.viewModelModule
@@ -21,7 +22,7 @@ class BetesApplication : Application() {
         startKoin {
             androidLogger()
             androidContext(this@BetesApplication)
-            modules(listOf(viewModelModule, repositoryModules, firebaseModule))
+            modules(listOf(viewModelModule, repositoryModules, firebaseModule, databaseModule))
         }
     }
 }

@@ -6,5 +6,5 @@ import kotlinx.coroutines.Dispatchers
 import org.koin.dsl.module
 
 val repositoryModules = module {
-    single<UserRepository> { UserRepositoryImpl(get(), Dispatchers.IO) }
+    single<UserRepository> { UserRepositoryImpl(get(), get(), Dispatchers.IO) }
 }

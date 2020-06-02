@@ -22,6 +22,7 @@ def coil_version = '0.8.0'
 def firebase_core_version = '17.4.2'
 def firebase_auth_version = '19.3.1'
 def google_auth_version = '18.0.0'
+def lottieVersion = '3.4.0'
 
 android {
     compileSdkVersion 29
@@ -99,6 +100,10 @@ dependencies {
     //crashytics
     releaseImplementation 'com.google.firebase:firebase-crashlytics:17.0.0'
     releaseImplementation 'com.google.firebase:firebase-analytics:17.4.2'
+
+    //lottie
+    implementation "com.airbnb.android:lottie:$lottieVersion"
+
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'

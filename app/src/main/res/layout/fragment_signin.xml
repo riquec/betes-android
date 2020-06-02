@@ -20,6 +20,13 @@
         app:layout_constraintTop_toBottomOf="@id/signing_image_back"
         style="@style/text_top_primary" />
 
+    <ProgressBar
+        android:id="@+id/signing_progress"
+        app:layout_constraintLeft_toRightOf="@id/signing_text_title"
+        app:layout_constraintTop_toTopOf="@id/signing_text_title"
+        app:layout_constraintBottom_toBottomOf="@id/signing_text_title"
+        style="@style/progress_side_top_title" />
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/signing_input_layout_email"
         android:hint="@string/email"

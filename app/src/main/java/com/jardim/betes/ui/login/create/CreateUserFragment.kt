@@ -12,6 +12,8 @@ import com.jardim.betes.R
 import com.jardim.betes.ui.login.LoginNavigate
 import com.jardim.betes.ui.login.LoginViewModel
 import com.jardim.betes.utils.constants.LoginConstants.DEFAULT_ERROR_MESSAGE
+import com.jardim.betes.utils.disable
+import com.jardim.betes.utils.enable
 import com.jardim.betes.utils.hasBlankInputs
 import kotlinx.android.synthetic.main.fragment_create_user.*
 import org.koin.android.ext.android.inject
@@ -52,10 +54,12 @@ class CreateUserFragment(private val navigate: LoginNavigate) : Fragment(), Life
         }
 
         createuser_button_login_google.setOnClickListener {
+            initLoading()
             navigate.goToGoogleAuth()
         }
 
         createuser_button_login.setOnClickListener {
+            initLoading()
             if (hasBlankInputs(listInputViews).not()){
                 loginViewModel.createUserAndUpdateProfile(
                     createuser_input_nick_name.text.toString(),
@@ -66,7 +70,20 @@ class CreateUserFragment(private val navigate: LoginNavigate) : Fragment(), Life
         }
     }
 
+    private fun initLoading() {
+        createuser_progress.visibility = View.VISIBLE
+        createuser_button_login_google.disable()
+        createuser_button_login.disable()
+    }
+
+    private fun finishLoading(){
+        createuser_progress.visibility = View.INVISIBLE
+        createuser_button_login_google.enable()
+        createuser_button_login.enable()
+    }
+
     private fun createUserObserver(result : Pair<Boolean, String?>){
+        finishLoading()
         if (result.first){
 
         }

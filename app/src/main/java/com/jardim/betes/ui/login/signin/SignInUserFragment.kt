@@ -13,7 +13,10 @@ import com.jardim.betes.R
 import com.jardim.betes.ui.login.LoginNavigate
 import com.jardim.betes.ui.login.LoginViewModel
 import com.jardim.betes.utils.constants.LoginConstants
+import com.jardim.betes.utils.disable
+import com.jardim.betes.utils.enable
 import com.jardim.betes.utils.hasBlankInputs
+import kotlinx.android.synthetic.main.fragment_create_user.*
 import kotlinx.android.synthetic.main.fragment_signin.*
 import org.koin.android.ext.android.inject
 
@@ -43,10 +46,12 @@ class SignInUserFragment(private val navigate: LoginNavigate) : Fragment() {
 
     private fun initViews() {
         signing_button_login_google.setOnClickListener {
+            initLoading()
             navigate.goToGoogleAuth()
         }
 
         signing_button_login.setOnClickListener {
+            initLoading()
             if (hasBlankInputs(listInputViews).not()){
                 loginViewModel.doSignIn(signing_input_email.text.toString(), signing_input_password.text.toString())
             }
@@ -62,6 +67,7 @@ class SignInUserFragment(private val navigate: LoginNavigate) : Fragment() {
     }
 
     private fun singInObserver(result : Pair<Boolean, String?>){
+        finishLoading()
         if (result.first){
 
         }
@@ -74,6 +80,19 @@ class SignInUserFragment(private val navigate: LoginNavigate) : Fragment() {
             }
         }
     }
+
+    private fun initLoading() {
+        signing_progress.visibility = View.VISIBLE
+        signing_button_login_google.disable()
+        signing_button_login.disable()
+    }
+
+    private fun finishLoading(){
+        signing_progress.visibility = View.INVISIBLE
+        signing_button_login_google.enable()
+        signing_button_login.enable()
+    }
+
 
     companion object {
         @JvmStatic
