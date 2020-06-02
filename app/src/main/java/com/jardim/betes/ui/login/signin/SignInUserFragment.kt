@@ -6,13 +6,20 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
+import com.google.android.material.snackbar.Snackbar
 
 import com.jardim.betes.R
 import com.jardim.betes.ui.login.LoginNavigate
+import com.jardim.betes.ui.login.LoginViewModel
+import com.jardim.betes.utils.constants.LoginConstants
 import com.jardim.betes.utils.hasBlankInputs
 import kotlinx.android.synthetic.main.fragment_signin.*
+import org.koin.android.ext.android.inject
 
 class SignInUserFragment(private val navigate: LoginNavigate) : Fragment() {
+    private val loginViewModel : LoginViewModel by inject()
+
     private val listInputViews by lazy {
         listOf(
             signing_input_email,
@@ -30,17 +37,18 @@ class SignInUserFragment(private val navigate: LoginNavigate) : Fragment() {
     override fun onResume() {
         super.onResume()
 
+        initObservables()
         initViews()
     }
 
     private fun initViews() {
         signing_button_login_google.setOnClickListener {
-
+            navigate.goToGoogleAuth()
         }
 
         signing_button_login.setOnClickListener {
             if (hasBlankInputs(listInputViews).not()){
-
+                loginViewModel.doSignIn(signing_input_email.text.toString(), signing_input_password.text.toString())
             }
         }
 
@@ -49,6 +57,23 @@ class SignInUserFragment(private val navigate: LoginNavigate) : Fragment() {
         }
     }
 
+    private fun initObservables() {
+        loginViewModel.whenAuthEvent().observe(this, Observer(::singInObserver))
+    }
+
+    private fun singInObserver(result : Pair<Boolean, String?>){
+        if (result.first){
+
+        }
+        else{
+            this.view?.let {
+                Snackbar.make(it,result.second ?: LoginConstants.DEFAULT_ERROR_MESSAGE, Snackbar.LENGTH_LONG).apply {
+                    animationMode = Snackbar.ANIMATION_MODE_FADE
+                    show()
+                }
+            }
+        }
+    }
 
     companion object {
         @JvmStatic

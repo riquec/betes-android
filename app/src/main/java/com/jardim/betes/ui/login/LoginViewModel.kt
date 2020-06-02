@@ -7,6 +7,8 @@ import androidx.lifecycle.viewModelScope
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
+import com.jardim.betes.domain.model.user.CreateUserData
+import com.jardim.betes.domain.model.user.SignInUserData
 import com.jardim.betes.domain.repository.UserRepository
 import com.jardim.betes.utils.constants.FragmentsKey.LOGIN_FRAGMENT_KEY
 import com.jardim.betes.utils.constants.LoginConstants.DEFAULT_ERROR_MESSAGE
@@ -16,19 +18,35 @@ import kotlinx.coroutines.launch
 class LoginViewModel(private val userRepository: UserRepository) : ViewModel() {
     var currentFragment = LOGIN_FRAGMENT_KEY
 
-    private val authGoogleLiveData = MutableLiveData<Pair<Boolean, String>>()
+    private val authFirebaseEvent = MutableLiveData<Pair<Boolean, String>>()
 
-    fun authGoogleEvent() : LiveData<Pair<Boolean, String>> = authGoogleLiveData
+    fun whenAuthEvent() : LiveData<Pair<Boolean, String>> = authFirebaseEvent
 
     fun doAuthWithGoogle(task: Task<GoogleSignInAccount>) {
         viewModelScope.launch {
             try {
                 val account = task.getResult(ApiException::class.java)
                 val result = userRepository.createUserWithGoogle(account)
-                authGoogleLiveData.postValue(result.toPair())
+                authFirebaseEvent.postValue(result.toPair())
             } catch (e : ApiException){
-                authGoogleLiveData.postValue(Pair(false, e.message ?: DEFAULT_ERROR_MESSAGE))
+                authFirebaseEvent.postValue(Pair(false, e.message ?: DEFAULT_ERROR_MESSAGE))
             }
+        }
+    }
+
+    fun createUser(nickName : String,
+                   email : String,
+                   password : String){
+        viewModelScope.launch {
+            val result = userRepository.createUser(CreateUserData(email, password))
+            authFirebaseEvent.postValue(result.toPair())
+        }
+    }
+
+    fun doSignIn(email : String, password: String){
+        viewModelScope.launch {
+            val result = userRepository.signIn(SignInUserData(email, password))
+            authFirebaseEvent.postValue(result.toPair())
         }
     }
 }

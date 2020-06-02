@@ -18,7 +18,6 @@ import org.koin.android.ext.android.inject
 
 
 class CreateUserFragment(private val navigate: LoginNavigate) : Fragment(), LifecycleOwner {
-    private val viewModel : CreateUserViewModel by inject()
     private val loginViewModel : LoginViewModel by inject()
 
     private val listInputViews by lazy {
@@ -44,8 +43,7 @@ class CreateUserFragment(private val navigate: LoginNavigate) : Fragment(), Life
     }
 
     private fun initObservables() {
-        viewModel.whenCreateUserEventHappen().observe(this, Observer(::createUserObserver))
-        loginViewModel.authGoogleEvent().observe(this, Observer(::createUserObserver))
+        loginViewModel.whenAuthEvent().observe(this, Observer(::createUserObserver))
     }
 
     private fun initViews() {
@@ -59,7 +57,7 @@ class CreateUserFragment(private val navigate: LoginNavigate) : Fragment(), Life
 
         createuser_button_login.setOnClickListener {
             if (hasBlankInputs(listInputViews).not()){
-                viewModel.createUser(
+                loginViewModel.createUser(
                     createuser_input_nick_name.text.toString(),
                     createuser_input_email.text.toString(),
                     createuser_input_password.text.toString()
@@ -70,7 +68,7 @@ class CreateUserFragment(private val navigate: LoginNavigate) : Fragment(), Life
 
     private fun createUserObserver(result : Pair<Boolean, String?>){
         if (result.first){
-            //todo navegar para o menu
+
         }
         else{
             this.view?.let {
