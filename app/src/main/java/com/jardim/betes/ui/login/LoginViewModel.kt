@@ -34,12 +34,17 @@ class LoginViewModel(private val userRepository: UserRepository) : ViewModel() {
         }
     }
 
-    fun createUser(nickName : String,
-                   email : String,
-                   password : String){
+    fun createUserAndUpdateProfile(nickName : String,
+                                   email : String,
+                                   password : String){
         viewModelScope.launch {
-            val result = userRepository.createUser(CreateUserData(email, password))
-            authFirebaseEvent.postValue(result.toPair())
+            val createUserResult = userRepository.createUser(CreateUserData(email, password))
+            if (createUserResult.operationSuccess){
+                val updateUserProfileResult = userRepository.updateNickName(nickName)
+                authFirebaseEvent.postValue(updateUserProfileResult.toPair())
+            } else {
+                authFirebaseEvent.postValue(createUserResult.toPair())
+            }
         }
     }
 

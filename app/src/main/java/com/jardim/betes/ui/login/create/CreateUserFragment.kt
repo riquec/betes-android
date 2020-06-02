@@ -57,7 +57,7 @@ class CreateUserFragment(private val navigate: LoginNavigate) : Fragment(), Life
 
         createuser_button_login.setOnClickListener {
             if (hasBlankInputs(listInputViews).not()){
-                loginViewModel.createUser(
+                loginViewModel.createUserAndUpdateProfile(
                     createuser_input_nick_name.text.toString(),
                     createuser_input_email.text.toString(),
                     createuser_input_password.text.toString()

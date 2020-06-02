@@ -2,7 +2,11 @@ package com.jardim.betes.data
 
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.auth.UserProfileChangeRequest
+import com.jardim.betes.db.dao.UserDao
+import com.jardim.betes.db.entities.User
 import com.jardim.betes.domain.model.result.FirebaseAuthResult
 import com.jardim.betes.domain.model.user.CreateUserData
 import com.jardim.betes.domain.model.user.SignInUserData
@@ -14,7 +18,9 @@ import kotlinx.coroutines.withContext
 import kotlin.coroutines.CoroutineContext
 
 class UserRepositoryImpl(private val firebaseAuth : FirebaseAuth,
+                         private val userDao : UserDao,
                          private val scope : CoroutineContext) : UserRepository {
+
     override suspend fun createUser(userData: CreateUserData) = CompletableDeferred<FirebaseAuthResult>().apply {
         withContext(scope){
             firebaseAuth.createUserWithEmailAndPassword(userData.email, userData.password)
@@ -51,6 +57,28 @@ class UserRepositoryImpl(private val firebaseAuth : FirebaseAuth,
                 .addOnFailureListener {
                     this@apply.complete(FirebaseAuthResult.getErrorInstance(it.message))
                 }
+        }
+    }.await()
+
+    override suspend fun saveUserLocal(user: User) {
+        withContext(scope) {
+            userDao.saveUser(user)
+        }
+    }
+
+    override suspend fun updateNickName(nickname: String) = CompletableDeferred<FirebaseAuthResult>().apply {
+        withContext(scope) {
+            firebaseAuth.currentUser?.let {
+                it.updateProfile(UserProfileChangeRequest.Builder()
+                    .setDisplayName(nickname)
+                    .build())
+                    .addOnSuccessListener {
+                        this@apply.complete(FirebaseAuthResult.instanceSuccess)
+                    }
+                    .addOnFailureListener { error ->
+                        this@apply.complete(FirebaseAuthResult.getErrorInstance(error.message))
+                    }
+            }
         }
     }.await()
 
