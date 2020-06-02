@@ -19,7 +19,7 @@ class CreateUserViewModel(private val userRepository: UserRepository) : ViewMode
                    password : String){
         viewModelScope.launch {
             val createResult = userRepository.createUser(CreateUserData(email, password))
-            createUserEventLiveData.postValue(Pair(createResult.userCreated, createResult.createUserError))
+            createUserEventLiveData.postValue(Pair(createResult.operationSuccess, createResult.operationErrorMessage))
         }
     }
 }

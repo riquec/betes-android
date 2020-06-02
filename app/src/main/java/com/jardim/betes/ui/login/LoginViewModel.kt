@@ -9,7 +9,8 @@ import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
 import com.jardim.betes.domain.repository.UserRepository
 import com.jardim.betes.utils.constants.FragmentsKey.LOGIN_FRAGMENT_KEY
-import com.jardim.betes.utils.constants.LoginConstants.DEFAULT_MESSAGE
+import com.jardim.betes.utils.constants.LoginConstants.DEFAULT_ERROR_MESSAGE
+import com.jardim.betes.utils.extensions.toPair
 import kotlinx.coroutines.launch
 
 class LoginViewModel(private val userRepository: UserRepository) : ViewModel() {
@@ -24,9 +25,9 @@ class LoginViewModel(private val userRepository: UserRepository) : ViewModel() {
             try {
                 val account = task.getResult(ApiException::class.java)
                 val result = userRepository.createUserWithGoogle(account)
-                authGoogleLiveData.postValue(Pair(result.userCreated, result.createUserError ?: DEFAULT_MESSAGE))
+                authGoogleLiveData.postValue(result.toPair())
             } catch (e : ApiException){
-                authGoogleLiveData.postValue(Pair(false, e.message ?: DEFAULT_MESSAGE))
+                authGoogleLiveData.postValue(Pair(false, e.message ?: DEFAULT_ERROR_MESSAGE))
             }
         }
     }

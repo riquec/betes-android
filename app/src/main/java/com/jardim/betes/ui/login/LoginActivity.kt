@@ -8,7 +8,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.jardim.betes.R
 import com.jardim.betes.ui.login.create.CreateUserFragment
 import com.jardim.betes.ui.login.login.LoginFragment
-import com.jardim.betes.ui.login.validate.ValidateUserFragment
+import com.jardim.betes.ui.login.signin.SignInUserFragment
 import com.jardim.betes.utils.constants.FragmentsKey.CREATE_USER_FRAGMENT_KEY
 import com.jardim.betes.utils.constants.FragmentsKey.LOGIN_FRAGMENT_KEY
 import com.jardim.betes.utils.constants.FragmentsKey.VALIDATE_USER_FRAGMENT_KEY
@@ -62,7 +62,7 @@ class LoginActivity : AppCompatActivity(), LoginNavigate {
         val fragment = when (fragmentTag) {
             LOGIN_FRAGMENT_KEY -> LoginFragment.newInstance(this)
             CREATE_USER_FRAGMENT_KEY -> CreateUserFragment.newInstance(this)
-            VALIDATE_USER_FRAGMENT_KEY -> ValidateUserFragment.newInstance(this)
+            VALIDATE_USER_FRAGMENT_KEY -> SignInUserFragment.newInstance(this)
             else -> null
         }
 

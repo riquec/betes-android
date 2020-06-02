@@ -7,5 +7,5 @@ object LoginConstants {
     const val BLANK_INPUT = "Campo vazio"
     const val INVALID_EMAIL = "Email inválido"
     const val GOOGLE_CREDENTIAL_NULL = "Falha com a conta Google"
-    const val DEFAULT_MESSAGE = "Falha com usuário"
+    const val DEFAULT_ERROR_MESSAGE = "Falha com usuário"
 }
