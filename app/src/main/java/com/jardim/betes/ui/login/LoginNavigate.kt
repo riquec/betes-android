@@ -5,4 +5,5 @@ interface LoginNavigate {
     fun goToLogin()
     fun goToValidatUser()
     fun goToMenu()
+    fun goToGoogleAuth()
 }

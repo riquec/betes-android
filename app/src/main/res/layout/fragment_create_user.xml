@@ -21,8 +21,8 @@
         style="@style/text_top_primary" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/createuser_input_layout_first_name"
-        android:hint="@string/first_name"
+        android:id="@+id/createuser_input_layout_nick_name"
+        android:hint="@string/your_nick_name"
         app:hintEnabled="true"
         app:hintTextColor="@color/darkGrey"
         app:boxBackgroundColor="@color/transparent"
@@ -34,7 +34,7 @@
         style="@style/text_input_layout">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/createuser_input_first_name"
+            android:id="@+id/createuser_input_nick_name"
             android:inputType="text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
@@ -42,7 +42,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/createuser_input_layout_email"
+        android:id="@+id/validate_input_layout_email"
         android:hint="@string/email"
         app:hintEnabled="true"
         app:errorEnabled="true"
@@ -52,20 +52,20 @@
         app:boxStrokeColor="@color/lightGrey"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/createuser_input_layout_first_name"
+        app:layout_constraintTop_toBottomOf="@id/createuser_input_layout_nick_name"
         style="@style/text_input_layout"
         android:layout_marginTop="15dp"
         >
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/createuser_input_email"
+            android:id="@+id/validate_input_email"
             android:inputType="textEmailAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/createuser_input_layout_password"
+        android:id="@+id/validate_input_layout_password"
         android:hint="@string/senha"
         app:hintEnabled="true"
         app:hintTextColor="@color/darkGrey"
@@ -75,20 +75,20 @@
         app:passwordToggleEnabled="true"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/createuser_input_layout_email"
+        app:layout_constraintTop_toBottomOf="@id/validate_input_layout_email"
         style="@style/text_input_layout"
         android:layout_marginTop="15dp"
         >
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/createuser_input_password"
+            android:id="@+id/validate_input_password"
             android:inputType="textPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/createuser_button_create"
+        android:id="@+id/validate_button_login"
         android:text="@string/create_account"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -97,7 +97,7 @@
         style="@style/button_enabled" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/createuser_button_sign_google"
+        android:id="@+id/validate_button_login_google"
         android:text="@string/continue_with_google"
         style="@style/button_google"
         android:textAlignment="center"
@@ -105,7 +105,7 @@
         android:paddingStart="30dip"
         android:paddingEnd="26dip"
         android:gravity="center"
-        app:layout_constraintBottom_toTopOf="@id/createuser_button_create"
+        app:layout_constraintBottom_toTopOf="@id/validate_button_login"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

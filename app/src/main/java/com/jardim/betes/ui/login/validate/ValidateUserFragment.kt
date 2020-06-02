@@ -19,6 +19,10 @@ class ValidateUserFragment(private val navigate: LoginNavigate) : Fragment() {
         return inflater.inflate(R.layout.fragment_validate_user, container, false)
     }
 
+    override fun onResume() {
+        super.onResume()
+    }
+
 
     companion object {
         @JvmStatic

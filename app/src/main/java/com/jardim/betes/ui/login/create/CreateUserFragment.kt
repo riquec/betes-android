@@ -5,43 +5,29 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
+import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputLayout
 import com.jardim.betes.R
-
 import com.jardim.betes.ui.login.LoginNavigate
 import com.jardim.betes.ui.login.LoginViewModel
 import com.jardim.betes.utils.constants.LoginConstants.BLANK_INPUT
-import com.jardim.betes.utils.constants.LoginConstants.EMAIL_VIEW
-import com.jardim.betes.utils.constants.LoginConstants.NAME_VIEW
-import com.jardim.betes.utils.constants.LoginConstants.PASSWORD_VIEW
+import com.jardim.betes.utils.constants.LoginConstants.DEFAULT_MESSAGE
 import kotlinx.android.synthetic.main.fragment_create_user.*
 import org.koin.android.ext.android.inject
 
 
 class CreateUserFragment(private val navigate: LoginNavigate) : Fragment(), LifecycleOwner {
+    private val viewModel : CreateUserViewModel by inject()
     private val loginViewModel : LoginViewModel by inject()
 
     private val listInputViews by lazy {
         listOf(
-            createuser_input_email,
-            createuser_input_first_name,
-            createuser_input_password
+            validate_input_email,
+            createuser_input_nick_name,
+            validate_input_password
         )
-    }
-
-    override fun onStart() {
-        super.onStart()
-
-        initViews()
-    }
-
-    override fun onResume() {
-        super.onResume()
-
-        initObservables()
     }
 
     override fun onCreateView(
@@ -51,14 +37,34 @@ class CreateUserFragment(private val navigate: LoginNavigate) : Fragment(), Life
         return this.view ?: inflater.inflate(R.layout.fragment_create_user, container, false)
     }
 
+    override fun onResume() {
+        super.onResume()
+
+        initObservables()
+        initViews()
+    }
+
+    private fun initObservables() {
+        viewModel.whenCreateUserEventHappen().observe(this, Observer(::createUserObserver))
+        loginViewModel.authGoogleEvent().observe(this, Observer(::createUserObserver))
+    }
+
     private fun initViews() {
         createuser_image_back.setOnClickListener {
             navigate.goToLogin()
         }
 
-        createuser_button_create.setOnClickListener {
+        validate_button_login_google.setOnClickListener {
+            navigate.goToGoogleAuth()
+        }
+
+        validate_button_login.setOnClickListener {
             if (hasBlankInputs().not()){
-                //create user here
+                viewModel.createUser(
+                    createuser_input_nick_name.text.toString(),
+                    validate_input_email.text.toString(),
+                    validate_input_password.text.toString()
+                )
             }
         }
     }
@@ -78,27 +84,15 @@ class CreateUserFragment(private val navigate: LoginNavigate) : Fragment(), Life
         return blankInputs
     }
 
-    private fun initObservables() {
-        loginViewModel.inputErrorFounded().observe(this, Observer(::errorObserve))
-    }
-
-    private fun errorObserve(mapError : Map<Int, String>) {
-        mapError.forEach {
-            when(it.key){
-                EMAIL_VIEW -> {
-                    createuser_input_layout_email.error = it.value
-                }
-
-                PASSWORD_VIEW -> {
-                    createuser_input_layout_password.error = it.value
-                }
-
-                NAME_VIEW -> {
-                    createuser_input_layout_first_name.error = it.value
-                }
-
-                else -> {
-                    Toast.makeText(activity, it.value, Toast.LENGTH_SHORT).show()
+    private fun createUserObserver(result : Pair<Boolean, String?>){
+        if (result.first){
+            //todo navegar para o menu
+        }
+        else{
+            this.view?.let {
+                Snackbar.make(it,result.second ?: DEFAULT_MESSAGE, Snackbar.LENGTH_LONG).apply {
+                    animationMode = Snackbar.ANIMATION_MODE_FADE
+                    show()
                 }
             }
         }
