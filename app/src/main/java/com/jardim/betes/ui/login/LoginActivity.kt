@@ -9,9 +9,9 @@ import com.jardim.betes.R
 import com.jardim.betes.ui.login.create.CreateUserFragment
 import com.jardim.betes.ui.login.login.LoginFragment
 import com.jardim.betes.ui.login.signin.SignInUserFragment
-import com.jardim.betes.utils.constants.FragmentsKey.CREATE_USER_FRAGMENT_KEY
-import com.jardim.betes.utils.constants.FragmentsKey.LOGIN_FRAGMENT_KEY
-import com.jardim.betes.utils.constants.FragmentsKey.VALIDATE_USER_FRAGMENT_KEY
+import com.jardim.betes.common.constants.FragmentsKey.CREATE_USER_FRAGMENT_KEY
+import com.jardim.betes.common.constants.FragmentsKey.LOGIN_FRAGMENT_KEY
+import com.jardim.betes.common.constants.FragmentsKey.VALIDATE_USER_FRAGMENT_KEY
 import org.koin.android.ext.android.inject
 
 private const val RC_SIGN_IN = 7

@@ -1,8 +1,8 @@
-package com.jardim.betes.utils
+package com.jardim.betes.common
 
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
-import com.jardim.betes.utils.constants.LoginConstants
+import com.jardim.betes.common.constants.LoginConstants
 
 fun hasBlankInputs(listInputViews : List<TextInputEditText>): Boolean {
     var blankInputs = false

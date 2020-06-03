@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.onboarding.introduction.IntroductionFragment">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/introduction_image_illustration"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_marginBottom="10dp"
+        android:src="@drawable/ic_introduction_illustration"
+        app:layout_constraintBottom_toTopOf="@id/introduction_guideline_middle"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/introduction_guideline_middle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintGuide_percent="0.5"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/introduction_text_title"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        style="@style/textview_title_login"
+        app:layout_constraintTop_toBottomOf="@id/introduction_guideline_middle"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:text="Nos fale de você!"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

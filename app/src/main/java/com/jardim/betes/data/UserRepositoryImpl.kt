@@ -2,7 +2,6 @@ package com.jardim.betes.data
 
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.UserProfileChangeRequest
 import com.jardim.betes.db.dao.UserDao
@@ -11,7 +10,7 @@ import com.jardim.betes.domain.model.result.FirebaseAuthResult
 import com.jardim.betes.domain.model.user.CreateUserData
 import com.jardim.betes.domain.model.user.SignInUserData
 import com.jardim.betes.domain.repository.UserRepository
-import com.jardim.betes.utils.constants.LoginConstants.GOOGLE_CREDENTIAL_NULL
+import com.jardim.betes.common.constants.LoginConstants.GOOGLE_CREDENTIAL_NULL
 import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.withContext
 

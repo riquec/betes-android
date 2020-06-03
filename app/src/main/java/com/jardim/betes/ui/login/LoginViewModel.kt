@@ -10,9 +10,9 @@ import com.google.android.gms.tasks.Task
 import com.jardim.betes.domain.model.user.CreateUserData
 import com.jardim.betes.domain.model.user.SignInUserData
 import com.jardim.betes.domain.repository.UserRepository
-import com.jardim.betes.utils.constants.FragmentsKey.LOGIN_FRAGMENT_KEY
-import com.jardim.betes.utils.constants.LoginConstants.DEFAULT_ERROR_MESSAGE
-import com.jardim.betes.utils.extensions.toPair
+import com.jardim.betes.common.constants.FragmentsKey.LOGIN_FRAGMENT_KEY
+import com.jardim.betes.common.constants.LoginConstants.DEFAULT_ERROR_MESSAGE
+import com.jardim.betes.common.extensions.toPair
 import kotlinx.coroutines.launch
 
 class LoginViewModel(private val userRepository: UserRepository) : ViewModel() {

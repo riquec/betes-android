@@ -1,4 +1,4 @@
-package com.jardim.betes.utils
+package com.jardim.betes.common
 
 import androidx.appcompat.widget.AppCompatButton
 

@@ -12,11 +12,10 @@ import com.google.android.material.snackbar.Snackbar
 import com.jardim.betes.R
 import com.jardim.betes.ui.login.LoginNavigate
 import com.jardim.betes.ui.login.LoginViewModel
-import com.jardim.betes.utils.constants.LoginConstants
-import com.jardim.betes.utils.disable
-import com.jardim.betes.utils.enable
-import com.jardim.betes.utils.hasBlankInputs
-import kotlinx.android.synthetic.main.fragment_create_user.*
+import com.jardim.betes.common.constants.LoginConstants
+import com.jardim.betes.common.disable
+import com.jardim.betes.common.enable
+import com.jardim.betes.common.hasBlankInputs
 import kotlinx.android.synthetic.main.fragment_signin.*
 import org.koin.android.ext.android.inject
 

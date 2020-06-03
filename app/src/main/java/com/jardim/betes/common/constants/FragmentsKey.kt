@@ -1,4 +1,4 @@
-package com.jardim.betes.utils.constants
+package com.jardim.betes.common.constants
 
 object FragmentsKey {
     const val LOGIN_FRAGMENT_KEY = "loginfragmentkey"

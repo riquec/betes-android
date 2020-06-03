@@ -1,4 +1,4 @@
-package com.jardim.betes.utils.constants
+package com.jardim.betes.common.constants
 
 object LoginConstants {
     const val SUCCESS_CREATE_USER = 0
